@@ -15,7 +15,7 @@ const version = "v1";
 const uri = `mongodb+srv://${user}:${password}@truckbusters.wivntqs.mongodb.net/?retryWrites=true&w=majority&appName=Truckbusters`;
 
 // Swagger config
-const file  = fs.readFileSync('./swagger.yaml', 'utf8')
+const file  = fs.readFileSync('./swagger.yml', 'utf8')
 const swaggerDocument = YAML.parse(file)
 
 // Middleware for API docs

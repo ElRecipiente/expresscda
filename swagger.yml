@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  title: Sample API
-  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  title: TruckBusters API
+  description: API to see disponibility of TruckBusters appointments.
   version: 0.1.9
 servers:
-  - url: http://api.example.com/v1
-    description: Optional server description, e.g. Main (production) server
+  - url: http://truckbusters-api/v1/appointment
+    description:
   - url: http://staging-api.example.com
-    description: Optional server description, e.g. Internal staging server for testing
+    description: Not a true API, just a line to remember I can do more.
 paths:
   /appointment:
     get:
@@ -18,7 +18,34 @@ paths:
           description: A JSON array of appointment
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
-                items: 
-                  type: string
+                items:
+                  type: object
+                  properties:
+                    start_date: 
+                      type: String
+                      format: date-time 
+                    society:
+                      type: object
+                      items:
+                        name:
+                          type: String
+                        mail:
+                          type: String
+                        driver: 
+                          type: object
+                          items:
+                            firstname:  
+                              type: String
+                            lastname:
+                              type: String
+                        vehicle: 
+                          type: object
+                          items:
+                            brand:
+                              type: String
+                            model:
+                              type: String
+                            registration_number:
+                              type: String
