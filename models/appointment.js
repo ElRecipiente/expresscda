@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
 
-const appointment = new Schema({
+// Shortcut to use mongoose methods (?)
+const { Schema } = mongoose;
+const { model } = mongoose;
+
+// Create Appointment Schema
+const appointmentSchema = new Schema({
     start_date: { type: Date },
     society: {
         name: { type: String, required: true },
@@ -17,3 +21,7 @@ const appointment = new Schema({
         }
     }
 })
+
+const Appointment = model('Appointment', appointmentSchema);
+
+export default Appointment;
