@@ -1,5 +1,6 @@
 import express from 'express';
-import router from './routes/appointment-routes.js';
+import appointmentRouter from './routes/appointment-routes.js';
+import configRouter from './routes/config-routes.js';
 import mongoose from 'mongoose';
 import { configDotenv } from 'dotenv';
 import * as swaggerUi from 'swagger-ui-express';
@@ -8,8 +9,8 @@ import fs from 'fs';
 
 // Express config
 const app = express();
-const port = 3333;
-const version = "v1";
+const port = configDotenv().parsed.PORT || 3000;
+const version = configDotenv().parsed.VERSION || "v1";
 const uri = configDotenv().parsed.CONNECT;
 
 app.use(express.json());
@@ -28,6 +29,7 @@ async function run() {
     }
 }
 run().catch(console.dir);
+console.log(new Date);
 
 // Swagger config
 const file = fs.readFileSync('./swagger.yml', 'utf8')
@@ -37,7 +39,8 @@ const swaggerDocument = YAML.parse(file)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Middleware for API routes
-app.use(`/api/${version}/appointment`, router);
+app.use(`/api/${version}/appointment`, appointmentRouter);
+app.use(`/api/${version}/config`, configRouter);
 
 
 
