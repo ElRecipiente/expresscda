@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get('/', appointmentController.findAll);
 
-router.get('/:id', appointmentController.findById);
+router.post('/book', appointmentController.create);
 
-router.post('/', appointmentController.create)
+router.post('/test',appointmentController.test)
 
 export default router;

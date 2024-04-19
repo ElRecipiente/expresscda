@@ -9,7 +9,7 @@ const appointmentSchema = new Schema({
     start_date: { type: Date },
     society: {
         name: { type: String, required: true },
-        mail: { type: String, required: true, unique: true },
+        mail: { type: String, required: true },
         driver: {
             firstname: { type: String, required: true },
             lastname: { type: String, required: true }
