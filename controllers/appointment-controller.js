@@ -1,4 +1,5 @@
 import Appointment from "../models/appointment.js";
+import sendMail from "../utils/sendMail.js";
 
 
 const appointmentController = {
@@ -35,6 +36,10 @@ const appointmentController = {
             // Save it in database
             const result = await newAppointment.save();
             res.status(201).json(result);
+            // Get mail adress to send mail
+            const { mail } = req.body.society;
+            // Send mail using sendMail
+            await sendMail(mail)
 
         } catch (error) {
             console.error("Erreur lors de la création d'un rendez-vous :", error);
