@@ -1,6 +1,7 @@
 import express from 'express';
 import appointmentRouter from './routes/appointment-routes.js';
 import configRouter from './routes/config-routes.js';
+import infoRouter from './routes/info-routes.js';
 import mongoose from 'mongoose';
 import { configDotenv } from 'dotenv';
 import * as swaggerUi from 'swagger-ui-express';
@@ -41,6 +42,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Middleware for API routes
 app.use(`/api/${version}/appointment`, appointmentRouter);
 app.use(`/api/${version}/config`, configRouter);
+app.use(`/api/${version}/info`, infoRouter)
 
 
 

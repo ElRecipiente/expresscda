@@ -8,7 +8,7 @@ const { model } = mongoose;
 const infoSchema = new Schema({
     mail: { type: String, required: true },
     adress: { type: String, required: true },
-    phone_number: { type: Number, required: true }
+    tel: { type: Number, required: true }
 })
 
 const Info = model('Info', infoSchema);
