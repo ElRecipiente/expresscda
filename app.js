@@ -3,6 +3,7 @@ import appointmentRouter from './routes/appointment-routes.js';
 import configRouter from './routes/config-routes.js';
 import infoRouter from './routes/info-routes.js';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import { configDotenv } from 'dotenv';
 import * as swaggerUi from 'swagger-ui-express';
 import * as YAML from 'yaml';
@@ -36,6 +37,9 @@ console.log(new Date);
 const file = fs.readFileSync('./swagger.yml', 'utf8')
 const swaggerDocument = YAML.parse(file)
 
+// Config CORS
+app.use(cors());
+
 // Middleware for API docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -44,9 +48,7 @@ app.use(`/api/${version}/appointment`, appointmentRouter);
 app.use(`/api/${version}/config`, configRouter);
 app.use(`/api/${version}/info`, infoRouter)
 
-
-
 app.listen(port, () => {
-    console.log(`Test listening on port ${port}`)
+    console.log(`CORS enabled, listening on port ${port}`)
 });
 
