@@ -4,7 +4,6 @@ import configRouter from './routes/config-routes.js';
 import infoRouter from './routes/info-routes.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { configDotenv } from 'dotenv';
 import dotenv from 'dotenv';
 import * as swaggerUi from 'swagger-ui-express';
 import * as YAML from 'yaml';
@@ -12,13 +11,11 @@ import fs from 'fs';
 
 // Express config
 const app = express();
-const port = configDotenv().parsed.PORT || 3000;
-const version = configDotenv().parsed.VERSION || "v1";
-const uri = configDotenv().parsed.CONNECT;
-
 dotenv.config();
-const uri2 = process.env.CONNECT
 
+const port = process.env.PORT || 3000;
+const version = process.env.VERSION || "v1";
+const uri = process.env.CONNECT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -33,8 +30,7 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } catch (error) {
         console.error("Failed to connect to MongoDB:", error);
-        console.log("Test connexion : ", configDotenv().parsed.CONNECT);
-        console.log("uri2", uri2);
+        console.log("Test connexion : ", process.env.CONNECT);
     }
 }
 run().catch(console.dir);
