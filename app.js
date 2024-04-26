@@ -28,6 +28,7 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } catch (error) {
         console.error("Failed to connect to MongoDB:", error);
+        console.log("Test connexion : ", CONNECT);
     }
 }
 run().catch(console.dir);

@@ -9,7 +9,7 @@ const infoController = {
 
         } catch (error) {
             console.error("Erreur lors de la récupération des données.", error);
-            res.status(500).json({ message: "Erreur lors de la récupération des données." })
+            res.status(500).json({ message: "Erreur lors de la récupération des données.", error })
         }
     }
 }
